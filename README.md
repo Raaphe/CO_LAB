@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # .NET MAUI Samples
 
 [![Buy Me A Coffee](https://ik.imagekit.io/VladislavAntonyuk/vladislavantonyuk/misc/bmc-button.png)](https://www.buymeacoffee.com/vlad.antonyuk)
@@ -78,3 +79,6 @@ The development guide can be found at [SETUP.md](./SETUP.md).
 1. [MauiTests](MauiTests) - Testing .NET MAUI application using Appium and xUnit.
 
 [![Stand With Ukraine](https://img.shields.io/badge/made_in-ukraine-ffd700.svg?labelColor=0057b7)](https://stand-with-ukraine.pp.ua)
+=======
+# CO_LAB PROJECT
+>>>>>>> f754383813463a9e9226968671f0b07311740cd5
