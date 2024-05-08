@@ -1,0 +1,41 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31611.283
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sqlite", "Sqlite", "{671C019C-7DCC-4B9E-AD7D-B9F6F35D044E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqliteRepository", "Database\Sqlite\SqliteRepository\SqliteRepository.csproj", "{13DAE136-5BF2-460C-BFD7-7BDB0785C935}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{D3C704D0-FB95-42BA-BBF1-E7360491551F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiTaskListApp", "Database\MauiTaskListApp\MauiTaskListApp.csproj", "{08096F4C-2BB3-4860-B0CA-9EC6A09EC377}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{13DAE136-5BF2-460C-BFD7-7BDB0785C935}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13DAE136-5BF2-460C-BFD7-7BDB0785C935}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13DAE136-5BF2-460C-BFD7-7BDB0785C935}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13DAE136-5BF2-460C-BFD7-7BDB0785C935}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08096F4C-2BB3-4860-B0CA-9EC6A09EC377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08096F4C-2BB3-4860-B0CA-9EC6A09EC377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08096F4C-2BB3-4860-B0CA-9EC6A09EC377}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{08096F4C-2BB3-4860-B0CA-9EC6A09EC377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08096F4C-2BB3-4860-B0CA-9EC6A09EC377}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08096F4C-2BB3-4860-B0CA-9EC6A09EC377}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{671C019C-7DCC-4B9E-AD7D-B9F6F35D044E} = {D3C704D0-FB95-42BA-BBF1-E7360491551F}
+		{13DAE136-5BF2-460C-BFD7-7BDB0785C935} = {671C019C-7DCC-4B9E-AD7D-B9F6F35D044E}
+		{08096F4C-2BB3-4860-B0CA-9EC6A09EC377} = {D3C704D0-FB95-42BA-BBF1-E7360491551F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}
+	EndGlobalSection
+EndGlobal
