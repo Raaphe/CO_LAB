@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:PAT.ViewModels"
+             x:Class="PAT.Views.MeetupsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <!-- Header -->
+            <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="LightGray">
+                <Label Text="Tutor" FontAttributes="Bold" />
+                <Label Text="Tutee" FontAttributes="Bold" />
+                <Label Text="Day of Week" FontAttributes="Bold" />
+                <Label Text="Start Time" FontAttributes="Bold" />
+                <Label Text="End Time" FontAttributes="Bold" />
+                <!-- Add more labels for additional columns if needed -->
+                <Label Text="" WidthRequest="80" /> <!-- Empty space for buttons -->
+                <Label Text="" WidthRequest="80" /> <!-- Empty space for buttons -->
+            </StackLayout>
+
+            <!-- CollectionView -->
+            <CollectionView ItemsSource="{Binding Meetings}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Padding="10">
+                            <Label Text="{Binding Tutor.Name}" />
+                            <Label Text="{Binding Tutee.Name}" />
+                            <Label Text="{Binding DayOfWeek}" />
+                            <Label Text="{Binding StartTime}" />
+                            <Label Text="{Binding EndTime}" />
+                            <Button Text="Edit" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MeetupsViewModel}}, Path=NavigateToChat}" CommandParameter="{Binding .}" />
+                            <Button Text="Delete" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MeetupsViewModel}}, Path=DeleteMeetingCommand}" CommandParameter="{Binding .}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

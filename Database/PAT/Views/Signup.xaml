@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PAT.Views.Signup"
+             BackgroundColor="Black">
+
+    <ContentPage.Content>
+        <Grid Margin="20">
+            <Frame BackgroundColor="#1C1C1E" CornerRadius="10" Padding="20">
+                <StackLayout Spacing="20">
+                    <Label Text="Sign Up" FontSize="Large" HorizontalOptions="Center" TextColor="White" />
+
+                    <Entry Placeholder="Name" x:Name="FName" PlaceholderColor="#B0B0B0" TextColor="White" />
+                    <Entry Placeholder="Last Name" x:Name="LName" PlaceholderColor="#B0B0B0" TextColor="White" />
+                    <Entry Placeholder="Email" x:Name="Email" Keyboard="Email" PlaceholderColor="#B0B0B0" TextColor="White" />
+
+                    <Entry Placeholder="Password" x:Name="Password" IsPassword="True" PlaceholderColor="#B0B0B0" TextColor="White" />
+
+                    <Label Text="Role" TextColor="White" />
+                    <StackLayout Orientation="Horizontal" Spacing="20">
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Tutee" TextColor="White" />
+                            <RadioButton x:Name="TuteeRadioButton" TextColor="White" GroupName="Roles" />
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Tutor" TextColor="White" />
+                            <RadioButton x:Name="TutorRadioButton" TextColor="White" GroupName="Roles" />
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Label Text="Teacher" TextColor="White" />
+                            <RadioButton x:Name="TeacherRadioButton" TextColor="White" GroupName="Roles" />
+                        </StackLayout>
+                    </StackLayout>
+
+                    <!-- Dropdown (Picker) for Program selection -->
+                    <Label Text="Program" TextColor="White" />
+                    <Picker x:Name="ProgramPicker" Title="Select Program" TextColor="White" SelectedItem="{Binding SelectedProgram}" ItemsSource="{Binding Programs}" ItemDisplayBinding="{Binding ProgramName}" />
+
+
+                    <Button Text="Submit" Clicked="OnSignupClicked" BackgroundColor="#007AFF" TextColor="White" />
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>

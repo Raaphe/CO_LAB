@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PAT.Views.Login">
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+        </Style>
+        <Style TargetType="Entry">
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="PlaceholderColor" Value="#B0B0B0" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="BackgroundColor" Value="LawnGreen" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="Padding" Value="12, 6" />
+        </Style>
+        <Style TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="#000000" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="20" />
+            <Setter Property="Margin" Value="20" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Frame>
+        <StackLayout Spacing="20">
+            <Label Text="Username" />
+            <Entry x:Name="EntryUsername"  Placeholder="Enter your username" />
+
+            <Label Text="Password" />
+            <Entry x:Name="EntryPwd" Placeholder="Enter your password" IsPassword="True" />
+
+            <Button Text="Login" Clicked="OnSubmitClicked" />
+        </StackLayout>
+    </Frame>
+
+</ContentPage>

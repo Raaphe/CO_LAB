@@ -1,0 +1,15 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PAT.Views.DayTimePickerModal">
+	<ContentPage.Content>
+		<StackLayout Padding="20" Spacing="20">
+			<Label Text="Select Day of the Week" FontSize="Medium" TextColor="#007AFF" />
+			<Picker x:Name="DayPicker" Title="Select Day" FontSize="Medium" TextColor="#007AFF" />
+			<Label Text="Select Start Time" FontSize="Medium" TextColor="#007AFF" />
+			<TimePicker x:Name="StartTimePicker" FontSize="Medium" TextColor="#007AFF" />
+			<Label Text="Select End Time" FontSize="Medium" TextColor="#007AFF" />
+			<TimePicker x:Name="EndTimePicker" FontSize="Medium" TextColor="#007AFF" />
+			<Button Text="Confirm" Clicked="OnConfirmClicked" BackgroundColor="#007AFF" TextColor="White" FontSize="Medium" CornerRadius="10" />
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,34 @@
+<Shell
+	x:Class="PAT.AppShell"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:views="clr-namespace:PAT.Views"
+	xmlns:pat="clr-namespace:PAT"
+	Title="PAT">
+
+	<Shell.Resources>
+		<ResourceDictionary>
+			<pat:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+		</ResourceDictionary>
+	</Shell.Resources>
+
+	<FlyoutItem Title="Login" IsVisible="{Binding IsLoggedIn, Converter={StaticResource InverseBooleanConverter}}">
+		<ShellContent ContentTemplate="{DataTemplate views:Login}" />
+	</FlyoutItem>
+
+	<FlyoutItem Title="Signup" IsVisible="{Binding IsLoggedIn, Converter={StaticResource InverseBooleanConverter}}">
+		<ShellContent ContentTemplate="{DataTemplate views:Signup}" />
+	</FlyoutItem>
+
+	<FlyoutItem Title="Meetups" IsVisible="{Binding IsLoggedIn}">
+		<ShellContent Route="meetups" ContentTemplate="{DataTemplate views:MeetupsPage}" />
+	</FlyoutItem>
+
+	<FlyoutItem Title="My availibilities" IsVisible="{Binding IsLoggedIn}">
+		<ShellContent Route="availibilities" ContentTemplate="{DataTemplate views:Availibilities}" />
+	</FlyoutItem>
+
+	<FlyoutItem Title="Find Tutor" IsVisible="{Binding IsLoggedIn}">
+		<ShellContent Route="find_tutor" ContentTemplate="{DataTemplate views:FindTutor}" />
+	</FlyoutItem>
+</Shell>
