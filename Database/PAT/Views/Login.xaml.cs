@@ -8,11 +8,14 @@ namespace PAT.Views
 	{
 		private readonly LoginViewModel _viewModel;
 
+
 		public Login(LoginViewModel viewModel)
 		{
 			InitializeComponent();
 			BindingContext = _viewModel = viewModel;
 		}
+
+
 
 		private async void OnSubmitClicked(object sender, EventArgs e)
 		{
@@ -31,7 +34,7 @@ namespace PAT.Views
 
 			if (tutee != null)
 			{
-				await DisplayAlert("Success", $"Logged in Tutee {tutee?.FirstName}", "OK");
+				await DisplayAlert("Succès", $"Connecté en tant que tutoré {tutee?.FirstName}", "OK");
 				if (App.ShellViewModel != null)
 				{
 					App.ShellViewModel.Student = tutee;
@@ -47,11 +50,11 @@ namespace PAT.Views
 				await DisplayAlert("Error", $"{tutor}", "OK");
 				if (!(tutor.IsValidated))
 				{
-					await DisplayAlert("Error", "Please wait to be validated, try again after receiving your confirmation email!", "OK");
+					await DisplayAlert("Error", "Veuillez attendre d'être accepté en tant que tuteur. Réessayez après avoir reçu un courriel de confirmation.!", "OK");
 				}
 				else
 				{
-					await DisplayAlert("Success", $"Logged in Tutor {tutor?.FirstName}", "OK");
+					await DisplayAlert("Succès", $"Connecté en tant que tuteur  {tutor?.FirstName}", "OK");
 					if (App.ShellViewModel != null)
 					{
 						App.ShellViewModel.Student = tutor;
@@ -63,11 +66,11 @@ namespace PAT.Views
 			}
 			else if (teacher != null)
 			{
-				await DisplayAlert("Success", $"Logged in Teacher {teacher?.FirstName}", "OK");
+				await DisplayAlert("Succès", $"Connecté en tant qu'enseignant {teacher?.FirstName}", "OK");
 				return;
 			}
 
-			await DisplayAlert("Error", "Invalid username or password.", "OK");
+			await DisplayAlert("Error", "Pseudo ou mot de passe invalide.", "OK");
 
 		}
 	}

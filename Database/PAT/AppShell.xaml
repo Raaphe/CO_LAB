@@ -12,23 +12,24 @@
 		</ResourceDictionary>
 	</Shell.Resources>
 
-	<FlyoutItem Title="Login" IsVisible="{Binding IsLoggedIn, Converter={StaticResource InverseBooleanConverter}}">
+	<FlyoutItem Title="Connexion" IsVisible="{Binding IsLoggedIn, Converter={StaticResource InverseBooleanConverter}}">
 		<ShellContent ContentTemplate="{DataTemplate views:Login}" />
 	</FlyoutItem>
 
-	<FlyoutItem Title="Signup" IsVisible="{Binding IsLoggedIn, Converter={StaticResource InverseBooleanConverter}}">
+	<FlyoutItem Title="Inscription" IsVisible="{Binding IsLoggedIn, Converter={StaticResource InverseBooleanConverter}}">
 		<ShellContent ContentTemplate="{DataTemplate views:Signup}" />
 	</FlyoutItem>
 
-	<FlyoutItem Title="Meetups" IsVisible="{Binding IsLoggedIn}">
+	<FlyoutItem Title="Rencontres" IsVisible="{Binding IsLoggedIn}">
 		<ShellContent Route="meetups" ContentTemplate="{DataTemplate views:MeetupsPage}" />
 	</FlyoutItem>
 
-	<FlyoutItem Title="My availibilities" IsVisible="{Binding IsLoggedIn}">
+	<FlyoutItem Title="Mes disponibilités" IsVisible="{Binding IsLoggedIn}">
 		<ShellContent Route="availibilities" ContentTemplate="{DataTemplate views:Availibilities}" />
 	</FlyoutItem>
 
-	<FlyoutItem Title="Find Tutor" IsVisible="{Binding IsLoggedIn}">
-		<ShellContent Route="find_tutor" ContentTemplate="{DataTemplate views:FindTutor}" />
+	<FlyoutItem Title="Trouver un tuteur" IsVisible="{Binding IsLoggedIn}">
+		<ShellContent Route="findtutor" ContentTemplate="{DataTemplate views:FindTutor}" />
 	</FlyoutItem>
+
 </Shell>
