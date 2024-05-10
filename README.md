@@ -32,11 +32,13 @@ Portail académique pour le Tutorat PAT est une plateforme bureau permettant aux
 
 ## Installation de l'application
 
-> Install dotnet 8>
-
-> `dotnet workload install maui`
-
-> `dotnet restore`  
+1. Installation de JetBrains Rider
+2. Installation de la derniere version de dotnet version (8.0.4x)
+3. Modidier le fichier msBuild de cette facon :
+	- Se rendre dans settings > Build, Execution, Deployment > Toolset and Build > `MSbuild version`
+	- Changer a `~/dotnet/sdk/<VERSION>/MSBuild.dll`
+4. `dotnet restore`
+5. `dotnet worload install maui` 
 
 ## Déploiement
 
