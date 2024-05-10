@@ -7,7 +7,7 @@ using Data;
 
 public partial class Signup : ContentPage
 {
-    private readonly SignUpViewModel _viewModel;
+     readonly SignUpViewModel _viewModel;
 
     public Signup(AppDbContext dbContext)
     {
@@ -39,13 +39,13 @@ public partial class Signup : ContentPage
 
         if (!IsPasswordStrong(passwd))
         {
-            await DisplayAlert("Validation Failed", "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.", "OK");
+            await DisplayAlert("Validation Failed", "\nLe mot de passe doit faire au minimum 8 caractères et contenir au moins une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial.", "OK");
             return;
         }
 
         if (!(isTutee || isTutor || isTeacher))
         {
-            await DisplayAlert("Validation Failed", "Please select at least one role.", "OK");
+            await DisplayAlert("Validation Failed", "Veuillez chossir au moins un rôle.", "OK");
             return;
         }
 
@@ -53,7 +53,7 @@ public partial class Signup : ContentPage
             (isTutor && (isTutee || isTeacher)) ||
             (isTeacher && (isTutee || isTutor)))
         {
-            await DisplayAlert("Validation Failed", "Please select only one role.", "OK");
+            await DisplayAlert("Validation Failed", "Veuillez choissir un seul rôle.", "OK");
             return;
         }
 
@@ -76,7 +76,7 @@ public partial class Signup : ContentPage
 	            };
                 await _viewModel.createNewTutee(tutee);
 
-                await DisplayAlert("Success", "Tutee account created successfully!", "OK");
+                await DisplayAlert("Succès", "Compte tutoré créé avec succès!", "OK");
                 if (App.ShellViewModel == null)
                 {
 	                return;
@@ -103,15 +103,15 @@ public partial class Signup : ContentPage
 	            };
                 await _viewModel.createNewTutor(tutor);
 
-                await DisplayAlert("Success", "Tutor account sent for validation!", "OK");
+                await DisplayAlert("Succès", "Compter tuteur créé avec succès!", "OK");
                 if (App.ShellViewModel == null)
                 {
 	                return;
                 }
 
                 App.ShellViewModel.Student = tutor;
-                App.ShellViewModel.IsLoggedIn = true;
-                await Shell.Current.GoToAsync("//meetups");
+                // App.ShellViewModel.IsLoggedIn = true;
+                // await Shell.Current.GoToAsync("//meetups");
             }
             else if (isTeacher)
             {
@@ -127,7 +127,7 @@ public partial class Signup : ContentPage
 	            };
                 await _viewModel.createNewTeacher(teacher);
 
-                await DisplayAlert("Success", "Teacher account created successfully!", "OK");
+                await DisplayAlert("Succès", "Compte enseignant créé avec succès!", "OK");
                 if (App.ShellViewModel == null)
                 {
 	                return;
@@ -141,19 +141,19 @@ public partial class Signup : ContentPage
         catch (Exception ex)
         {
             Console.WriteLine($"An error occurred: {ex.Message}");
-            await DisplayAlert("Error", "An unexpected error occurred. Please try again later.", "OK");
+            await DisplayAlert("Error", "Une erreur inattendue s'est produite. Veuillez réessayer plus tard.", "OK");
         }
     }
 
     private bool IsPasswordStrong(string password)
     {
 	    return true;
-        /*var hasMinimumLength = password.Length >= 8;
-        var hasUpperCase = password.Any(char.IsUpper);
-        var hasLowerCase = password.Any(char.IsLower);
-        var hasDigit = password.Any(char.IsDigit);
-        var hasSpecialChar = password.Any(ch => !char.IsLetterOrDigit(ch));
-
-        return hasMinimumLength && hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar;*/
+        // var hasMinimumLength = password.Length >= 8;
+        // var hasUpperCase = password.Any(char.IsUpper);
+        // var hasLowerCase = password.Any(char.IsLower);
+        // var hasDigit = password.Any(char.IsDigit);
+        // var hasSpecialChar = password.Any(ch => !char.IsLetterOrDigit(ch));
+        //
+        // return hasMinimumLength && hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar;
     }
 }
