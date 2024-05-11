@@ -2,16 +2,37 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:PAT.ViewModels"
-             x:Class="PAT.Views.MeetupsPage">
+             x:Class="PAT.Views.MeetupsPage"
+             BackgroundColor="#fdad5d">
+	<ContentPage.Resources>
+		<Style TargetType="Frame">
+			<Setter Property="BackgroundColor" Value="#feeede" />
+			<Setter Property="CornerRadius" Value="10" />
+			<Setter Property="Padding" Value="20" />
+			<Setter Property="Margin" Value="50" />
+		</Style>
+
+	</ContentPage.Resources>
+
     <ContentPage.Content>
-        <StackLayout>
+	    <ScrollView>
+		    <Grid ColumnDefinitions="*,*">
+			    <Frame Grid.Column="0">
+			    <StackLayout>
             <!-- Header -->
-            <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="LightGray">
-                <Label Text="Tutor" FontAttributes="Bold" />
-                <Label Text="Tutee" FontAttributes="Bold" />
-                <Label Text="Day of Week" FontAttributes="Bold" />
-                <Label Text="Start Time" FontAttributes="Bold" />
-                <Label Text="End Time" FontAttributes="Bold" />
+            <Label Text="Vos Rencontres" FontSize="Large" HorizontalOptions="Center" TextColor="#044c7a"></Label>
+            <BoxView
+	            HeightRequest="2"
+	            BackgroundColor="#044C7A"
+	            HorizontalOptions="FillAndExpand"
+	            Margin="2"
+            ></BoxView>
+            <StackLayout Orientation="Horizontal" Padding="16" BackgroundColor="#044c7a" HorizontalOptions="Center">
+                <Label Text="Tuteur " FontAttributes="Bold" TextColor="#fdad5d" Margin="5" />
+                <Label Text="Tutoré " FontAttributes="Bold" TextColor="#fdad5d" Margin="5"/>
+                <Label Text="Jour de la semaine " FontAttributes="Bold" TextColor="#fdad5d" Margin="5"/>
+                <Label Text="Début " FontAttributes="Bold" TextColor="#fdad5d" Margin="5"/>
+                <Label Text="Fin " FontAttributes="Bold" TextColor="#fdad5d" Margin="5"/>
                 <!-- Add more labels for additional columns if needed -->
                 <Label Text="" WidthRequest="80" /> <!-- Empty space for buttons -->
                 <Label Text="" WidthRequest="80" /> <!-- Empty space for buttons -->
@@ -19,20 +40,27 @@
 
             <!-- CollectionView -->
             <CollectionView ItemsSource="{Binding Meetings}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Orientation="Horizontal" Padding="10">
-                            <Label Text="{Binding Tutor.Name}" />
-                            <Label Text="{Binding Tutee.Name}" />
-                            <Label Text="{Binding DayOfWeek}" />
-                            <Label Text="{Binding StartTime}" />
-                            <Label Text="{Binding EndTime}" />
-                            <Button Text="Edit" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MeetupsViewModel}}, Path=NavigateToChat}" CommandParameter="{Binding .}" />
-                            <Button Text="Delete" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MeetupsViewModel}}, Path=DeleteMeetingCommand}" CommandParameter="{Binding .}" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
+	                <CollectionView.ItemTemplate>
+	                    <DataTemplate>
+	                        <StackLayout Orientation="Horizontal" Padding="10">
+	                            <Label Text="{Binding Tutor.Name}" />
+	                            <Label Text="{Binding Tutee.Name}" />
+	                            <Label Text="{Binding DayOfWeek}" />
+	                            <Label Text="{Binding StartTime}" />
+	                            <Label Text="{Binding EndTime}" />
+	                            <Button Text="Edit" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MeetupsViewModel}}, Path=NavigateToChat}" CommandParameter="{Binding .}" />
+	                            <Button Text="Delete" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MeetupsViewModel}}, Path=DeleteMeetingCommand}" CommandParameter="{Binding .}" />
+	                        </StackLayout>
+	                    </DataTemplate>
+	                </CollectionView.ItemTemplate>
+	            </CollectionView>
+				</StackLayout>
+			    </Frame>
+			    <Frame Grid.Column="1">
+				    <Image  Source="meetup.png" HeightRequest="500" ></Image>
+			    </Frame>
+			    </Grid>
+	    </ScrollView>
     </ContentPage.Content>
+
 </ContentPage>

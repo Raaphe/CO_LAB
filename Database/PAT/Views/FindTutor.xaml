@@ -4,6 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PAT.Views.FindTutor">
 	<ContentPage.Content>
-		<Button Text="Login" Clicked="OnSubmitClicked" />
+		<Frame>
+
+			<Button Text="dsvsdfadsd"></Button>
+		</Frame>
 	</ContentPage.Content>
 </ContentPage>

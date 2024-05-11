@@ -1,44 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PAT.Views.Login">
+             x:Class="PAT.Views.Login"
+             BackgroundColor="#fdad5d">
 
     <ContentPage.Resources>
         <Style TargetType="Label">
-            <Setter Property="TextColor" Value="White" />
+            <Setter Property="TextColor" Value="#044C7A" />
             <Setter Property="FontSize" Value="16" />
         </Style>
         <Style TargetType="Entry">
-            <Setter Property="TextColor" Value="White" />
+            <Setter Property="TextColor" Value="#044C7A" />
             <Setter Property="PlaceholderColor" Value="#B0B0B0" />
             <Setter Property="FontSize" Value="16" />
             <Setter Property="Background" Value="Transparent" />
         </Style>
         <Style TargetType="Button">
-            <Setter Property="TextColor" Value="White" />
-            <Setter Property="BackgroundColor" Value="LawnGreen" />
+            <Setter Property="TextColor" Value="#fdad5d" />
+            <Setter Property="BackgroundColor" Value="#044C7A" />
             <Setter Property="FontSize" Value="16" />
             <Setter Property="CornerRadius" Value="5" />
-            <Setter Property="Padding" Value="12, 6" />
+            <Setter Property="Padding" Value="16, 14" />
+            <Setter Property="Margin" Value="0,30,0,0"/>
         </Style>
-        <Style TargetType="Frame">
-            <Setter Property="BackgroundColor" Value="#000000" />
-            <Setter Property="CornerRadius" Value="10" />
-            <Setter Property="Padding" Value="20" />
-            <Setter Property="Margin" Value="20" />
-        </Style>
+	    <Style TargetType="Frame">
+		    <Setter Property="BackgroundColor" Value="#feeede" />
+		    <Setter Property="CornerRadius" Value="10" />
+		    <Setter Property="Padding" Value="20" />
+		    <Setter Property="Margin" Value="50" />
+	    </Style>
+
     </ContentPage.Resources>
 
-    <Frame>
-        <StackLayout Spacing="20">
-            <Label Text="Username" />
-            <Entry x:Name="EntryUsername"  Placeholder="Enter your username" />
+<ScrollView>
+	<Grid ColumnDefinitions="*,*">
+		<Frame Grid.Column="0">
+		<Image  Source="pat.png" HeightRequest="500" ></Image>
+		</Frame>
 
-            <Label Text="Password" />
-            <Entry x:Name="EntryPwd" Placeholder="Enter your password" IsPassword="True" />
+	<Frame Grid.Column="1">
+	    <StackLayout Spacing="20">
+		    <Label Text="Connectez-vous" FontSize="Large" HorizontalOptions="Center"></Label>
+		    <BoxView
+			    HeightRequest="2"
+			    BackgroundColor="#044C7A"
+			    HorizontalOptions="FillAndExpand"
+		    ></BoxView>
+		    <StackLayout Spacing="20">
+		    <Label Text="Pseudo" />
+            <Entry x:Name="EntryUsername"  Placeholder="Veuillez entrer votre pseudo" />
 
-            <Button Text="Login" Clicked="OnSubmitClicked" />
+            <Label Text="Mot de passe" />
+            <Entry x:Name="EntryPwd" Placeholder="Veuillez entrer votre mot de passe " IsPassword="True" />
+			<Label Text="Oublié votre mot de passe?" FontSize="10"/>
+            <Button Text="Connexion" Clicked="OnSubmitClicked" />
+		    <Button Text="Pas de compte? Cliquez ici!" Margin="0,0,0,0" Clicked="OnSubmitClicked" />
+		    </StackLayout>
         </StackLayout>
     </Frame>
-
+	</Grid>
+</ScrollView>
 </ContentPage>
