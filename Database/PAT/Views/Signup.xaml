@@ -2,45 +2,63 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PAT.Views.Signup"
-             BackgroundColor="Black">
+             BackgroundColor="#fdad5d">
+	<ContentPage.Resources>
+	<Style TargetType="Frame">
+			<Setter Property="BackgroundColor" Value="#feeede" />
+			<Setter Property="CornerRadius" Value="10" />
+			<Setter Property="Padding" Value="20" />
+			<Setter Property="Margin" Value="50" />
+		</Style>
 
-    <ContentPage.Content>
-        <Grid Margin="20">
-            <Frame BackgroundColor="#1C1C1E" CornerRadius="10" Padding="20">
+	</ContentPage.Resources>
+
+	<ContentPage.Content>
+	    <ScrollView>
+		    <Grid ColumnDefinitions="*,*">
+			    <Frame Grid.Column="0">
+				    <Image  Source="signup.png" HeightRequest="600" ></Image>
+			    </Frame>
+		    <Grid Grid.Column="1">
+            <Frame>
                 <StackLayout Spacing="20">
-                    <Label Text="Sign Up" FontSize="Large" HorizontalOptions="Center" TextColor="White" />
+                    <Label Text="Inscrivez-vous" FontSize="Large" HorizontalOptions="Center" TextColor="#044C7A" />
+                    <BoxView
+	                    HeightRequest="2"
+	                    BackgroundColor="#044C7A"
+	                    HorizontalOptions="FillAndExpand"
+                    ></BoxView>
 
-                    <Entry Placeholder="Name" x:Name="FName" PlaceholderColor="#B0B0B0" TextColor="White" />
-                    <Entry Placeholder="Last Name" x:Name="LName" PlaceholderColor="#B0B0B0" TextColor="White" />
-                    <Entry Placeholder="Email" x:Name="Email" Keyboard="Email" PlaceholderColor="#B0B0B0" TextColor="White" />
+                    <Entry Placeholder="Prénom" x:Name="FName" PlaceholderColor="#B0B0B0" TextColor="#044C7A" />
+                    <Entry Placeholder="Nom de famille" x:Name="LName" PlaceholderColor="#B0B0B0" TextColor="#044C7A" />
+                    <Entry Placeholder="Email" x:Name="Email" Keyboard="Email" PlaceholderColor="#B0B0B0" TextColor="#044C7A" />
 
-                    <Entry Placeholder="Password" x:Name="Password" IsPassword="True" PlaceholderColor="#B0B0B0" TextColor="White" />
+                    <Entry Placeholder="Mot de passe" x:Name="Password" IsPassword="True" PlaceholderColor="#B0B0B0" TextColor="#044C7A" />
 
-                    <Label Text="Role" TextColor="White" />
                     <StackLayout Orientation="Horizontal" Spacing="20">
                         <StackLayout Orientation="Vertical">
-                            <Label Text="Tutee" TextColor="White" />
-                            <RadioButton x:Name="TuteeRadioButton" TextColor="White" GroupName="Roles" />
+                            <Label Text="Tutoré" TextColor="#044C7A" />
+                            <RadioButton x:Name="TuteeRadioButton" TextColor="#044C7A" GroupName="Roles" />
                         </StackLayout>
                         <StackLayout Orientation="Vertical">
-                            <Label Text="Tutor" TextColor="White" />
-                            <RadioButton x:Name="TutorRadioButton" TextColor="White" GroupName="Roles" />
+                            <Label Text="Tuteur" TextColor="#044C7A" />
+                            <RadioButton x:Name="TutorRadioButton" TextColor="#044C7A" GroupName="Roles" />
                         </StackLayout>
                         <StackLayout Orientation="Vertical">
-                            <Label Text="Teacher" TextColor="White" />
-                            <RadioButton x:Name="TeacherRadioButton" TextColor="White" GroupName="Roles" />
+                            <Label Text="Enseignant" TextColor="#044C7A" />
+                            <RadioButton x:Name="TeacherRadioButton" TextColor="#044C7A" GroupName="Roles" />
                         </StackLayout>
                     </StackLayout>
 
                     <!-- Dropdown (Picker) for Program selection -->
-                    <Label Text="Program" TextColor="White" />
-                    <Picker x:Name="ProgramPicker" Title="Select Program" TextColor="White" SelectedItem="{Binding SelectedProgram}" ItemsSource="{Binding Programs}" ItemDisplayBinding="{Binding ProgramName}" />
-
-
-                    <Button Text="Submit" Clicked="OnSignupClicked" BackgroundColor="#007AFF" TextColor="White" />
+                    <Picker x:Name="ProgramPicker" BackgroundColor="#feeede" Title="Sélectionnez un programme" TitleColor="#044C7A" SelectedItem="{Binding SelectedProgram}" ItemsSource="{Binding Programs}" ItemDisplayBinding="{Binding ProgramName}" />
+                    <Button Text="Envoyer" Clicked="OnSignupClicked" BackgroundColor="#044C7A" TextColor="#fdad5d" />
                 </StackLayout>
             </Frame>
         </Grid>
-    </ContentPage.Content>
+		    </Grid>
+	    </ScrollView>
 
+
+    </ContentPage.Content>
 </ContentPage>
