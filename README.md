@@ -46,7 +46,6 @@ Portail académique pour le Tutorat PAT est une plateforme bureau permettant aux
 
 ## Aperçu visuel 
 ---
-(Insérez une image ici)
 
 ## Contributors ✨
  
