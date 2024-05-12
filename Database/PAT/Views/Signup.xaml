@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PAT.Views.Signup"
-             BackgroundColor="#fdad5d">
+             BackgroundColor="#CCCCCC">
 	<ContentPage.Resources>
 	<Style TargetType="Frame">
 			<Setter Property="BackgroundColor" Value="#feeede" />
@@ -10,7 +10,6 @@
 			<Setter Property="Padding" Value="20" />
 			<Setter Property="Margin" Value="50" />
 		</Style>
-
 	</ContentPage.Resources>
 
 	<ContentPage.Content>
@@ -22,37 +21,36 @@
 		    <Grid Grid.Column="1">
             <Frame>
                 <StackLayout Spacing="20">
-                    <Label Text="Inscrivez-vous" FontSize="Large" HorizontalOptions="Center" TextColor="#044C7A" />
+                    <Label Text="Inscrivez-vous" FontSize="Large" HorizontalOptions="Center" TextColor="#007a8d" />
                     <BoxView
 	                    HeightRequest="2"
-	                    BackgroundColor="#044C7A"
+	                    BackgroundColor="#007a8d"
 	                    HorizontalOptions="FillAndExpand"
                     ></BoxView>
 
-                    <Entry Placeholder="Prénom" x:Name="FName" PlaceholderColor="#B0B0B0" TextColor="#044C7A" />
-                    <Entry Placeholder="Nom de famille" x:Name="LName" PlaceholderColor="#B0B0B0" TextColor="#044C7A" />
-                    <Entry Placeholder="Email" x:Name="Email" Keyboard="Email" PlaceholderColor="#B0B0B0" TextColor="#044C7A" />
+                    <Entry Placeholder="Prénom" x:Name="FName" PlaceholderColor="#B0B0B0" TextColor="#007a8d" />
+                    <Entry Placeholder="Nom de famille" x:Name="LName" PlaceholderColor="#B0B0B0" TextColor="#007a8d" />
+                    <Entry Placeholder="Email" x:Name="Email" Keyboard="Email" PlaceholderColor="#B0B0B0" TextColor="#007a8d" />
 
-                    <Entry Placeholder="Mot de passe" x:Name="Password" IsPassword="True" PlaceholderColor="#B0B0B0" TextColor="#044C7A" />
+                    <Entry Placeholder="Mot de passe" x:Name="Password" IsPassword="True" PlaceholderColor="#B0B0B0" TextColor="#007a8d" />
 
                     <StackLayout Orientation="Horizontal" Spacing="20">
-                        <StackLayout Orientation="Vertical">
-                            <Label Text="Tutoré" TextColor="#044C7A" />
-                            <RadioButton x:Name="TuteeRadioButton" TextColor="#044C7A" GroupName="Roles" />
+                        <StackLayout Orientation="Vertical" >
+                            <Label Text="Tutoré" TextColor="#007a8d" />
+                            <RadioButton x:Name="TuteeRadioButton"  GroupName="Roles" BackgroundColor="#feeede"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical" >
+                            <Label Text="Tuteur"  TextColor="#007a8d"/>
+                            <RadioButton x:Name="TutorRadioButton"  GroupName="Roles"  BackgroundColor="#feeede"/>
                         </StackLayout>
                         <StackLayout Orientation="Vertical">
-                            <Label Text="Tuteur" TextColor="#044C7A" />
-                            <RadioButton x:Name="TutorRadioButton" TextColor="#044C7A" GroupName="Roles" />
-                        </StackLayout>
-                        <StackLayout Orientation="Vertical">
-                            <Label Text="Enseignant" TextColor="#044C7A" />
-                            <RadioButton x:Name="TeacherRadioButton" TextColor="#044C7A" GroupName="Roles" />
+                            <Label Text="Enseignant"  TextColor="#007a8d"  />
+                            <RadioButton x:Name="TeacherRadioButton" GroupName="Roles" BackgroundColor="#feeede" />
                         </StackLayout>
                     </StackLayout>
 
-                    <!-- Dropdown (Picker) for Program selection -->
-                    <Picker x:Name="ProgramPicker" BackgroundColor="#feeede" Title="Sélectionnez un programme" TitleColor="#044C7A" SelectedItem="{Binding SelectedProgram}" ItemsSource="{Binding Programs}" ItemDisplayBinding="{Binding ProgramName}" />
-                    <Button Text="Envoyer" Clicked="OnSignupClicked" BackgroundColor="#044C7A" TextColor="#fdad5d" />
+                    <Picker x:Name="ProgramPicker" BackgroundColor="#007a8d" Title="Sélectionnez un programme" TitleColor="#007a8d" SelectedItem="{Binding SelectedProgram}" ItemsSource="{Binding Programs}" ItemDisplayBinding="{Binding ProgramName}" />
+                    <Button Text="Create" Clicked="OnSignupClicked" BackgroundColor="#007a8d" TextColor="#ffffff" />
                 </StackLayout>
             </Frame>
         </Grid>

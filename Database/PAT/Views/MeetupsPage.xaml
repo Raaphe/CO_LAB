@@ -2,11 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:PAT.ViewModels"
-             x:Class="PAT.Views.MeetupsPage"
-             BackgroundColor="#fdad5d">
+             x:Class="PAT.Views.MeetupsPage">
 	<ContentPage.Resources>
 		<Style TargetType="Frame">
-			<Setter Property="BackgroundColor" Value="#feeede" />
 			<Setter Property="CornerRadius" Value="10" />
 			<Setter Property="Padding" Value="20" />
 			<Setter Property="Margin" Value="50" />
@@ -28,11 +26,11 @@
 	            Margin="2"
             ></BoxView>
             <StackLayout Orientation="Horizontal" Padding="16" BackgroundColor="#044c7a" HorizontalOptions="Center">
-                <Label Text="Tuteur " FontAttributes="Bold" TextColor="#fdad5d" Margin="5" />
-                <Label Text="Tutoré " FontAttributes="Bold" TextColor="#fdad5d" Margin="5"/>
-                <Label Text="Jour de la semaine " FontAttributes="Bold" TextColor="#fdad5d" Margin="5"/>
-                <Label Text="Début " FontAttributes="Bold" TextColor="#fdad5d" Margin="5"/>
-                <Label Text="Fin " FontAttributes="Bold" TextColor="#fdad5d" Margin="5"/>
+                <Label Text="Tuteur " FontAttributes="Bold"  Margin="5" />
+                <Label Text="Tutoré " FontAttributes="Bold"  Margin="5"/>
+                <Label Text="Jour de la semaine " FontAttributes="Bold"  Margin="5"/>
+                <Label Text="Début " FontAttributes="Bold"  Margin="5"/>
+                <Label Text="Fin " FontAttributes="Bold"  Margin="5"/>
                 <!-- Add more labels for additional columns if needed -->
                 <Label Text="" WidthRequest="80" /> <!-- Empty space for buttons -->
                 <Label Text="" WidthRequest="80" /> <!-- Empty space for buttons -->

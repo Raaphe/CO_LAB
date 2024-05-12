@@ -6,14 +6,13 @@ namespace PAT.Views
 	using System.Runtime.CompilerServices;
 	using Data;
 	using Models.Entities;
-	using ViewModels;
 
-	public partial class Availibilities : ContentPage, INotifyPropertyChanged
+	public partial class Availabilities : INotifyPropertyChanged
 	{
 		private readonly AppDbContext _context;
 		public ObservableCollection<Availability>? AvailabilityList { get; set; }
 
-		public Availibilities(AppDbContext appDbContext)
+		public Availabilities(AppDbContext appDbContext)
 		{
 			InitializeComponent();
 			_context = appDbContext;
@@ -25,7 +24,7 @@ namespace PAT.Views
 		{
 			return _context.Availabilities
 			               .Where(a => App.ShellViewModel != null && App.ShellViewModel.Student != null && a.Student != null && a.Student.Id == App.ShellViewModel.Student.Id && !a.IsDeleted)
-			               .AsEnumerable() // Force client-side evaluation
+			               .AsEnumerable()
 			               .OrderBy(a => a.DayOfWeek)
 			               .ToList();
 		}
@@ -35,12 +34,14 @@ namespace PAT.Views
 			base.OnAppearing();
 			AvailabilityList?.Clear();
 			var availabilities = GetAvailabilityList();
-			if (availabilities != null)
+			if (availabilities == null)
 			{
-				foreach (var availability in availabilities)
-				{
-					AvailabilityList?.Add(availability);
-				}
+				return;
+			}
+
+			foreach (var availability in availabilities)
+			{
+				AvailabilityList?.Add(availability);
 			}
 		}
 
@@ -58,6 +59,11 @@ namespace PAT.Views
 		{
 			var modalPage = new DayTimePickerModal(_context);
 			await Navigation.PushModalAsync(modalPage);
+		}
+
+		private async void OnBackButtonClicked(object? sender, EventArgs e)
+		{
+			await Shell.Current.GoToAsync("//meetups");
 		}
 	}
 }

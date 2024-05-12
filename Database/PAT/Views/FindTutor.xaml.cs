@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace PAT.Views
+﻿namespace PAT.Views
 {
 	using Data;
 	using Models.Entities;
@@ -13,35 +7,40 @@ namespace PAT.Views
 	public partial class FindTutor : ContentPage
 	{
 		private readonly FindTutorViewModel _viewModel;
-		private readonly AppDbContext _context;
-		public ObservableCollection<Tutor>? Tutors { get; set; }
 
-		public FindTutor(FindTutorViewModel findTutorViewModel, AppDbContext appDbContext)
+		public FindTutor(AppDbContext appDbContext)
 		{
 			InitializeComponent();
-			_context = appDbContext;
-			BindingContext = _viewModel = findTutorViewModel;
-
-			var loadTutorsAsync = LoadTutorsAsync();
+			BindingContext = _viewModel = new FindTutorViewModel(appDbContext);
+			LoadDataAsync();
 		}
 
-		private async Task LoadTutorsAsync()
+		private async void LoadDataAsync()
 		{
-			var programName = App.ShellViewModel?.Student?.Program?.ProgramName;
-			if (!string.IsNullOrEmpty(programName))
+			await _viewModel.LoadStudentsCoursesAsync();
+		}
+
+		private void OnSubmitClicked(object sender, EventArgs e)
+		{
+
+		}
+
+		private async void OnBackButtonClicked(object? sender, EventArgs e)
+		{
+			await Shell.Current.GoToAsync("//meetups");
+		}
+
+		private void OnCourseSelectedChanged(object? sender, EventArgs e)
+		{
+			if (CoursePicker.SelectedItem is Course selectedCourse)
 			{
-				var tutors = await _viewModel.GetAvailableTutorsAsync(programName);
-				Tutors = new ObservableCollection<Tutor>(tutors);
-			}
-			else
-			{
-				Tutors = new ObservableCollection<Tutor>();
+				_viewModel.SelectedCourse = selectedCourse;
 			}
 		}
 
-		private async void OnSubmitClicked(object sender, EventArgs e)
+		private void OnAddButtonClicked(object? sender, EventArgs e)
 		{
-			await DisplayAlert("Error", $"{Tutors}", "OK");
+			throw new NotImplementedException();
 		}
 	}
 }

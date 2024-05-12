@@ -1,0 +1,35 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PAT.Views.Availabilities">
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView>
+                <StackLayout Margin="200,10,200,10">
+					<Button x:Name="BackButton" Text="Back" Clicked="OnBackButtonClicked" HorizontalOptions="Start" VerticalOptions="Start" Margin="10"/>
+                    <Frame CornerRadius="15" Padding="20" Margin="0,20">
+                        <ScrollView>
+                            <StackLayout>
+                                <Label Text="Disponibilités" FontSize="Large" HorizontalOptions="Center" Margin="0,10" />
+                                <BoxView HeightRequest="2" BackgroundColor="#044C7A" HorizontalOptions="FillAndExpand"></BoxView>
+                                <ListView ItemsSource="{Binding AvailabilityList}" HasUnevenRows="true">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout Padding="10">
+                                                    <Label Text="{Binding DayOfWeek}" FontSize="Medium" />
+                                                    <Label Text="{Binding StartTime, StringFormat='Start Time: {0:hh\\:mm tt}'}" FontSize="Small" />
+                                                    <Label Text="{Binding EndTime, StringFormat='End Time: {0:hh\\:mm tt}'}" FontSize="Small" />
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                                <Button Text="Ajouter vos disponibilités" Clicked="OnAddAvailabilityClicked" HorizontalOptions="Center" Margin="0,20" />
+                            </StackLayout>
+                        </ScrollView>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,33 +1,33 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PAT.Views.DayTimePickerModal"
-             BackgroundColor="#fdad5d">
+             x:Class="PAT.Views.DayTimePickerModal">
 	<ContentPage.Resources>
 		<Style TargetType="Frame">
-			<Setter Property="BackgroundColor" Value="#feeede" />
 			<Setter Property="CornerRadius" Value="10" />
 			<Setter Property="Padding" Value="20" />
 			<Setter Property="Margin" Value="50" />
 		</Style>
-
 	</ContentPage.Resources>
 
 	<ContentPage.Content>
+
+
 		<Frame>
-		<StackLayout Padding="20" Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
-			<Label Text="Veuillez choisir vos disponibiltés" FontSize="Large" TextColor="#044c7a" />
-			<BoxView
-				HeightRequest="2"
-				BackgroundColor="#044C7A"
-				HorizontalOptions="FillAndExpand"
-			></BoxView>
-			<Picker x:Name="DayPicker" Title="Choisissez la journée" FontSize="Medium" TitleColor="#044c7a" />
-			<Label Text="Choisissez l'heure de début" FontSize="Medium" TextColor="#044c7a" />
-			<TimePicker x:Name="StartTimePicker" FontSize="Medium" TextColor="#044c7a" />
-			<Label Text="Choississez l'heure de fin" FontSize="Medium" TextColor="#044c7a" />
-			<TimePicker x:Name="EndTimePicker" FontSize="Medium" TextColor="#044c7a" />
-			<Button Text="Envoyer" Clicked="OnConfirmClicked" BackgroundColor="#044c7a" TextColor="#fdad5d" FontSize="Medium" CornerRadius="10" />
-		</StackLayout>
+			<StackLayout Padding="20" Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
+				<Button x:Name="BackButton" Text="Back" Clicked="OnBackButtonClicked" HorizontalOptions="Start" VerticalOptions="Start" Margin="10"/>
+				<Label Text="Veuillez choisir vos disponibiltés" FontSize="Large" TextColor="#044c7a" />
+				<BoxView
+					HeightRequest="2"
+					BackgroundColor="#044C7A"
+					HorizontalOptions="FillAndExpand"
+				></BoxView>
+				<Picker x:Name="DayPicker" Title="Choisissez la journée" FontSize="Medium" TitleColor="#044c7a" />
+				<Label Text="Choisissez l'heure de début" FontSize="Medium" TextColor="#044c7a" />
+				<TimePicker x:Name="StartTimePicker" FontSize="Medium" TextColor="#044c7a" />
+				<Label Text="Choississez l'heure de fin" FontSize="Medium" TextColor="#044c7a" />
+				<TimePicker x:Name="EndTimePicker" FontSize="Medium" TextColor="#044c7a" />
+				<Button Text="Envoyer" Clicked="OnConfirmClicked" BackgroundColor="#044c7a" TextColor="#fdad5d" FontSize="Medium" CornerRadius="10" />
+			</StackLayout>
 			</Frame>
 	</ContentPage.Content>
 </ContentPage>

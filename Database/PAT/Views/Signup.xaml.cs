@@ -110,8 +110,8 @@ public partial class Signup : ContentPage
                 }
 
                 App.ShellViewModel.Student = tutor;
-                // App.ShellViewModel.IsLoggedIn = true;
-                // await Shell.Current.GoToAsync("//meetups");
+                App.ShellViewModel.IsLoggedIn = true;
+                await Shell.Current.GoToAsync("//meetups");
             }
             else if (isTeacher)
             {

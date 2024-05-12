@@ -18,5 +18,6 @@ public class Message: BaseEntity
 	/// Gets or sets the message's Content.
 	/// </summary>
 	[Required]
+	[MaxLength(4000)]
 	public string Content { get; set; } = string.Empty;
 }

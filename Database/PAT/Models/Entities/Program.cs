@@ -8,18 +8,19 @@ public class Program: BaseEntity
 	/// Gets or sets the Program's Code.
 	/// </summary>
 	[Required]
+	[MaxLength(40)]
 	public string ProgramCode { get; set; } = string.Empty;
 
 	/// <summary>
 	/// Gets or sets the Program's Name.
 	/// </summary>
 	[Required]
+	[MaxLength(200)]
 	public string ProgramName { get; set; } = string.Empty;
 
 	/// <summary>
 	/// Gets or sets the Program's Courses.
 	/// </summary>
-	[Required]
 	public virtual IEnumerable<Course> Courses { get; set; } = Enumerable.Empty<Course>();
 
 	/// <summary>

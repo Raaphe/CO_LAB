@@ -2,22 +2,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PAT.Views.Login"
-             BackgroundColor="#fdad5d">
+             BackgroundColor="#CCCCCC">
 
     <ContentPage.Resources>
         <Style TargetType="Label">
-            <Setter Property="TextColor" Value="#044C7A" />
+            <Setter Property="TextColor" Value="#007a8d" />
             <Setter Property="FontSize" Value="16" />
         </Style>
         <Style TargetType="Entry">
-            <Setter Property="TextColor" Value="#044C7A" />
+            <Setter Property="TextColor" Value="#007a8d" />
             <Setter Property="PlaceholderColor" Value="#B0B0B0" />
             <Setter Property="FontSize" Value="16" />
             <Setter Property="Background" Value="Transparent" />
         </Style>
         <Style TargetType="Button">
-            <Setter Property="TextColor" Value="#fdad5d" />
-            <Setter Property="BackgroundColor" Value="#044C7A" />
+            <Setter Property="TextColor" Value="#FFFFFF" />
+            <Setter Property="BackgroundColor" Value="#007a8d" />
             <Setter Property="FontSize" Value="16" />
             <Setter Property="CornerRadius" Value="5" />
             <Setter Property="Padding" Value="16, 14" />
@@ -43,7 +43,7 @@
 		    <Label Text="Connectez-vous" FontSize="Large" HorizontalOptions="Center"></Label>
 		    <BoxView
 			    HeightRequest="2"
-			    BackgroundColor="#044C7A"
+			    BackgroundColor="#007a8d"
 			    HorizontalOptions="FillAndExpand"
 		    ></BoxView>
 		    <StackLayout Spacing="20">
@@ -54,7 +54,7 @@
             <Entry x:Name="EntryPwd" Placeholder="Veuillez entrer votre mot de passe " IsPassword="True" />
 			<Label Text="Oublié votre mot de passe?" FontSize="10"/>
             <Button Text="Connexion" Clicked="OnSubmitClicked" />
-		    <Button Text="Pas de compte? Cliquez ici!" Margin="0,0,0,0" Clicked="OnSubmitClicked" />
+		    <Button Text="Pas de compte? Cliquez ici!" Margin="0,0,0,0" Clicked="NavToSignup" />
 		    </StackLayout>
         </StackLayout>
     </Frame>

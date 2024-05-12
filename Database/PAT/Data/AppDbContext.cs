@@ -12,6 +12,4 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 	public DbSet<Course> Courses => Set<Course>();
 	public DbSet<Availability> Availabilities => Set<Availability>();
 	public DbSet<Program> Programs => Set<Program>();
-
-
 }

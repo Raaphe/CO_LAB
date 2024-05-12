@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 public class Student: User
 {
 	[Required]
+	[MaxLength(15)]
 	public String Matricule { get; set; } = String.Empty;
 
 	[Required]

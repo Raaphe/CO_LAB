@@ -30,11 +30,13 @@ public static class MauiProgram
 		builder.Services.AddSingleton<TutorViewModel>();
 		builder.Services.AddSingleton<TeacherViewModel>();
 		builder.Services.AddSingleton<MeetupsViewModel>();
+		builder.Services.AddSingleton<FindTutorViewModel>();
 
 		builder.Services.AddSingleton<Signup>();
 		builder.Services.AddSingleton<Login>();
+		builder.Services.AddSingleton<FindTutor>();
 		builder.Services.AddSingleton<ChatPage>();
-		builder.Services.AddSingleton<Availibilities>();
+		builder.Services.AddSingleton<Availabilities>();
 		builder.Services.AddSingleton<DayTimePickerModal>();
 		builder.Services.AddSingleton<MeetupsPage>();
 

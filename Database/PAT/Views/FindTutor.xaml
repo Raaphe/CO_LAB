@@ -2,11 +2,39 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:entities="clr-namespace:PAT.Models.Entities"
              x:Class="PAT.Views.FindTutor">
 	<ContentPage.Content>
-		<Frame>
 
-			<Button Text="dsvsdfadsd"></Button>
-		</Frame>
+		<VerticalStackLayout Spacing="25" Padding="30">
+
+			<Button Text="Back" Clicked="OnBackButtonClicked" />
+			<Label Text="Available tutors" HorizontalOptions="Center" />
+
+			<Picker
+				Title="Select Course"
+				x:Name="CoursePicker"
+				SelectedItem="{Binding SelectedCourse}"
+				ItemsSource="{Binding Courses}"
+				ItemDisplayBinding="{Binding CourseName}"
+				SelectedIndexChanged="OnCourseSelectedChanged" />
+
+			<ListView ItemsSource="{Binding Meetings}">
+				<ListView.ItemTemplate>
+					<DataTemplate  x:DataType="entities:Meeting">
+						<ViewCell>
+							<StackLayout Orientation="Horizontal" Padding="10">
+								<Label Text="{Binding Tutor.FirstName}" />
+								<!-- <Label Text="{Binding StartTime, StringFormat='{0:hh\\:mm tt}'}" /> -->
+								<!-- <Label Text=" - " /> -->
+								<!-- <Label Text="{Binding EndTime, StringFormat='{0:hh\\:mm tt}'}" /> -->
+								<!-- <Button Text="Add" Clicked="OnAddButtonClicked" /> -->
+							</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+
+		</VerticalStackLayout>
 	</ContentPage.Content>
 </ContentPage>

@@ -32,24 +32,31 @@ namespace PAT.Views
 
 		private async void OnConfirmClicked(object sender, EventArgs e)
 		{
-			if (DayPicker.SelectedItem is DayOfWeek selectedDay)
+			if (DayPicker.SelectedItem is not DayOfWeek)
 			{
-				App.ShellViewModel?.Student?.Availabilities?.Add(new Availability
-				{
-					DayOfWeek = SelectedDay,
-					StartTime = StartTimePicker.Time,
-					EndTime = EndTimePicker.Time,
-					Student = App.ShellViewModel.Student,
-					IsDeleted = false
-				});
-
-				await _context.SaveChangesAsync();
-
-				SelectedDay = SelectedDay;
-				SelectedStartTime = StartTimePicker.Time;
-				SelectedEndTime = EndTimePicker.Time;
-				await Navigation.PopModalAsync();
+				return;
 			}
+
+			App.ShellViewModel?.Student?.Availabilities?.Add(new Availability
+			{
+				DayOfWeek = SelectedDay,
+				StartTime = StartTimePicker.Time,
+				EndTime = EndTimePicker.Time,
+				Student = App.ShellViewModel.Student,
+				IsDeleted = false
+			});
+
+			await _context.SaveChangesAsync();
+
+			SelectedDay = SelectedDay;
+			SelectedStartTime = StartTimePicker.Time;
+			SelectedEndTime = EndTimePicker.Time;
+			await Navigation.PopModalAsync();
+		}
+
+		private async void OnBackButtonClicked(object? sender, EventArgs e)
+		{
+			await Shell.Current.GoToAsync("//availabilities");
 		}
 	}
 }

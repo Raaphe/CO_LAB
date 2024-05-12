@@ -49,6 +49,7 @@ public sealed partial class SignUpViewModel : ObservableObject, IDisposable, IAs
 		foreach (var p in _context.Programs)
 		{
 			Programs?.Add(p);
+
 		}
 	}
 
@@ -79,27 +80,25 @@ public sealed partial class SignUpViewModel : ObservableObject, IDisposable, IAs
 		return true;
 	}
 
-	public async Task<bool> createNewTutor(Tutor tutor)
+	public async Task createNewTutor(Tutor tutor)
 	{
 		if (_context.Tutors.Any(t => t.Email == tutor.Email))
 		{
-			return false;
+			return;
 		}
 
 		_context.Tutors.Add(tutor);
 		await _context.SaveChangesAsync();
-		return true;
 	}
 
-	public async Task<bool> createNewTeacher(Teacher teacher)
+	public async Task createNewTeacher(Teacher teacher)
 	{
 		if (_context.Teachers.Any(t => t.Email == teacher.Email))
 		{
-			return false;
+			return;
 		}
 
 		_context.Teachers.Add(teacher);
 		await _context.SaveChangesAsync();
-		return true;
 	}
 }
