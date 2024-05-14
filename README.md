@@ -46,11 +46,14 @@ Portail académique pour le Tutorat PAT est une plateforme bureau permettant aux
 
 ## Aperçu visuel 
 ---
-![image](https://github.com/Raaphe/CO_LAB/assets/111932725/6781e5c5-9ef5-4315-a9df-cf97cdfb6a2d)
-![image](https://github.com/Raaphe/CO_LAB/assets/111932725/14e72eca-42f9-41fd-ba81-bc025e611e67)
-![image](https://github.com/Raaphe/CO_LAB/assets/111932725/038ea930-f0d8-4be1-a97d-f9ea54f242f0)
-![image](https://github.com/Raaphe/CO_LAB/assets/111932725/41ba317a-c39e-43e9-b469-aa2b22c18d87)
-![image](https://github.com/Raaphe/CO_LAB/assets/111932725/582b477a-8f8a-41ff-b7f0-f93ba45eeb2a)
+![image](https://github.com/Raaphe/CO_LAB/assets/111932725/d8faa52c-4b4f-48f6-8a4d-c5d4e739e3d4)
+![image](https://github.com/Raaphe/CO_LAB/assets/111932725/7cbb6613-b05f-43fe-b473-707aa5dfe771)
+![image](https://github.com/Raaphe/CO_LAB/assets/111932725/2a2fd3c4-816a-4796-9c80-0b6c777b4d8c)
+![image](https://github.com/Raaphe/CO_LAB/assets/111932725/764ecfc8-e7a1-4c77-83dd-f7c1aeeb2c68)
+![image](https://github.com/Raaphe/CO_LAB/assets/111932725/421ea94a-824b-4179-a6b0-8ec4f81907cc)
+
+
+
 
 ## Contributors ✨
  
