@@ -1,8 +1,7 @@
-﻿namespace PAT.Models.Entities;
+﻿// PAT Project - Sharp Coders
 
-using System.ComponentModel.DataAnnotations;
-
-public class Tutee: Student
+namespace PAT.Models.Entities;
+public class Tutee : Student
 {
 
 

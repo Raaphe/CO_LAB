@@ -12,10 +12,12 @@
 		</ResourceDictionary>
 	</Shell.Resources>
 
+
+
 	<Shell.TitleView >
-		<Grid ColumnDefinitions="9*,1*"  IsVisible="{Binding IsLoggedIn}">
+		<Grid ColumnDefinitions="9*,1*" Padding="2" IsVisible="{Binding IsLoggedIn}">
 			<Label x:Name="Logout" HorizontalOptions="Start" Grid.Column="0" VerticalTextAlignment="Center" />
-			<Button Text="Logout" Grid.Column="1" Clicked="OnLogoutClicked" HorizontalOptions="Start" />
+			<Button Text="Logout" Grid.Column="1" Clicked="OnLogoutClicked" HorizontalOptions="Start" Margin="0,4,0,4" />
 		</Grid>
 	</Shell.TitleView>
 
@@ -35,7 +37,11 @@
 		<ShellContent Route="availabilities" ContentTemplate="{DataTemplate views:Availabilities}" />
 	</FlyoutItem>
 
-	<FlyoutItem Title="Schedule a meet-up" IsVisible="{Binding IsLoggedIn}">
+    <FlyoutItem Title="Chats" IsVisible="{Binding IsLoggedIn}">
+        <ShellContent Route="chat" ContentTemplate="{DataTemplate views:ChatPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Schedule a meet-up" IsVisible="{Binding IsTutor}">
 		<ShellContent Route="findtutor" ContentTemplate="{DataTemplate views:FindTutor}" />
 	</FlyoutItem>
 

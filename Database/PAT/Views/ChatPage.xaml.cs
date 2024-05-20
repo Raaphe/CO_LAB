@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// PAT Project - Sharp Coders
+//
+// This file is part of the PAT project. For more information, visit https://github.com/Raaphe/CO_LAB
 
-namespace PAT.Views;
-
-public partial class ChatPage : ContentPage
+namespace PAT.Views
 {
-	public ChatPage()
-	{
-		InitializeComponent();
-	}
+    public partial class ChatPage : ContentPage
+    {
+        public ChatPage() => InitializeComponent();
+    }
 }

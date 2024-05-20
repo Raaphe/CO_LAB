@@ -1,27 +1,27 @@
-﻿namespace PAT.ViewModels;
+﻿// PAT Project - Sharp Coders
 
-using System.Collections.ObjectModel;
+namespace PAT.ViewModels;
+
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Data;
-using Models;
 using Models.Entities;
 using Task = System.Threading.Tasks.Task;
 
-public sealed partial class TutorViewModel(AppDbContext context): ObservableObject, IDisposable
+public sealed partial class TutorViewModel(AppDbContext context) : ObservableObject, IDisposable
 {
-	[ObservableProperty]
-	private Tutor tutor = new();
+    [ObservableProperty]
+    private Tutor tutor = new();
 
-	[ObservableProperty]
-	private string hasErrorsCodeBehind = string.Empty;
+    [ObservableProperty]
+    private string hasErrorsCodeBehind = string.Empty;
 
-	[RelayCommand]
-	private async Task CreateTutor(Tutor tutorParam)
-	{
-		context.Tutors.Add(tutorParam);
-		await context.SaveChangesAsync();
-	}
+    [RelayCommand]
+    private async Task CreateTutor(Tutor tutorParam)
+    {
+        context.Tutors.Add(tutorParam);
+        await context.SaveChangesAsync();
+    }
 
-	public void Dispose() => context.Dispose();
+    public void Dispose() => context.Dispose();
 }

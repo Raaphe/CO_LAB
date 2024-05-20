@@ -1,4 +1,6 @@
-﻿namespace PAT;
+﻿// PAT Project - Sharp Coders
+
+namespace PAT;
 
 using Android.App;
 using Android.Content.PM;

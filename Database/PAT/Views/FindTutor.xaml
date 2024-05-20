@@ -1,40 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:entities="clr-namespace:PAT.Models.Entities"
              x:Class="PAT.Views.FindTutor">
-	<ContentPage.Content>
+    <ContentPage.Content>
+        <StackLayout Padding="20" Spacing="20">
 
-		<VerticalStackLayout Spacing="25" Padding="30">
+            <Button Text="Back" Clicked="OnBackButtonClicked" BackgroundColor="#007BFF" TextColor="White" CornerRadius="8" />
+            <Label Text="Available Tutors" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" />
+            <Picker x:Name="CoursePicker"
+                    Title="Select Course"
+                    SelectedItem="{Binding SelectedCourse}"
+                    ItemsSource="{Binding Courses}"
+                    ItemDisplayBinding="{Binding CourseName}"
+                    FontSize="16"
+                    Margin="0,10,0,0" />
 
-			<Button Text="Back" Clicked="OnBackButtonClicked" />
-			<Label Text="Available tutors" HorizontalOptions="Center" />
+            <ListView ItemsSource="{Binding Meetings}"
+                      VerticalOptions="FillAndExpand"
+                      SeparatorVisibility="None"
+                      RowHeight="80">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="entities:Meeting">
+                        <ViewCell Height="60">
+                            <Grid Padding="10"
+                                  BackgroundColor="#F0F0F0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Column="0"
+                                             Orientation="Horizontal"
+                                             Spacing="10"
+                                             VerticalOptions="Center"
+                                             Margin="0,0,10,0">
+                                    <Label Text="{Binding Tutor.FirstName}"
+                                           FontSize="18"
+                                           VerticalOptions="Center"
+                                           TextColor="Black" />
+                                    <Label Text="{Binding StartTime, StringFormat='{0:hh:mm}'}"
+                                           FontSize="16"
+                                           VerticalOptions="Center"
+                                           TextColor="Black" />
+                                    <Label Text="-"
+                                           FontSize="16"
+                                           VerticalOptions="Center"
+                                           TextColor="Black" />
+                                    <Label Text="{Binding EndTime, StringFormat='{0:hh:mm}'}"
+                                           FontSize="16"
+                                           VerticalOptions="Center"
+                                           TextColor="Black" />
+                                    <Label Text="{Binding Course.CourseName }"
+                                           FontSize="16"
+                                           VerticalOptions="Center"
+                                           TextColor="Black" />
+                                </StackLayout>
+                                <Button Grid.Column="1"
+                                        Text="Add"
+                                        Clicked="OnAddButtonClicked"
+                                        BackgroundColor="#007BFF"
+                                        TextColor="White"
+                                        CornerRadius="8"
+                                        WidthRequest="100"
+                                        HeightRequest="40"
+                                        FontSize="14"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="End" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-			<Picker
-				Title="Select Course"
-				x:Name="CoursePicker"
-				SelectedItem="{Binding SelectedCourse}"
-				ItemsSource="{Binding Courses}"
-				ItemDisplayBinding="{Binding CourseName}"
-				SelectedIndexChanged="OnCourseSelectedChanged" />
-
-			<ListView ItemsSource="{Binding Meetings}">
-				<ListView.ItemTemplate>
-					<DataTemplate  x:DataType="entities:Meeting">
-						<ViewCell>
-							<StackLayout Orientation="Horizontal" Padding="10">
-								<Label Text="{Binding Tutor.FirstName}" />
-								<!-- <Label Text="{Binding StartTime, StringFormat='{0:hh\\:mm tt}'}" /> -->
-								<!-- <Label Text=" - " /> -->
-								<!-- <Label Text="{Binding EndTime, StringFormat='{0:hh\\:mm tt}'}" /> -->
-								<!-- <Button Text="Add" Clicked="OnAddButtonClicked" /> -->
-							</StackLayout>
-						</ViewCell>
-					</DataTemplate>
-				</ListView.ItemTemplate>
-			</ListView>
-
-		</VerticalStackLayout>
-	</ContentPage.Content>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

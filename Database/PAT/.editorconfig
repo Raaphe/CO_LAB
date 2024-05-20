@@ -1,0 +1,103 @@
+# top-most EditorConfig file
+root = true
+
+# Top-most EditorConfig file
+root = true
+
+# General settings
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# File header template
+file_header_template=PAT Project - Sharp Coders\n\nThis file is part of the PAT project. For more information, visit https://github.com/Raaphe/CO_LAB
+
+# C# specific settings
+[*.cs]
+# Code style settings
+dotnet_style_require_accessibility_modifiers = always:error
+
+# General settings
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# C# files
+[*.cs]
+
+# Organize usings
+dotnet_separate_import_directive_groups = true:error
+
+# Code style settings
+# Expression-bodied members
+csharp_style_expression_bodied_methods = true:error
+csharp_style_expression_bodied_constructors = true:error
+csharp_style_expression_bodied_operators = true:error
+csharp_style_expression_bodied_properties = true:error
+csharp_style_expression_bodied_indexers = true:error
+csharp_style_expression_bodied_accessors = true:error
+
+# Pattern matching
+csharp_style_pattern_matching_over_is_with_cast_check = true:error
+csharp_style_pattern_matching_over_as_with_null_check = true:error
+csharp_style_pattern_matching_over_is_with_null_check = true:error
+
+# Variable preferences
+csharp_style_var_for_built_in_types = true:error
+csharp_style_var_when_type_is_apparent = true:error
+
+# Null checking
+csharp_style_throw_expression = true:error
+csharp_style_conditional_delegate_call = true:error
+
+# Modifier preferences
+dotnet_style_require_accessibility_modifiers = always:error
+
+# Naming conventions
+dotnet_naming_rule.interface_prefix = true
+dotnet_naming_rule.interface_prefix.symbols = interface
+dotnet_naming_rule.interface_prefix.style = prefix_interface_with_i
+dotnet_naming_symbols.interface = kind = interface
+dotnet_naming_style.prefix_interface_with_i.required_prefix = I
+
+# Disable the rule that requires discarding unused return values
+dotnet_diagnostic.IDE0058.severity = none
+
+# Code analysis settings
+dotnet_analyzer_diagnostic.category-Security.severity = error
+dotnet_analyzer_diagnostic.category-Style.severity = error
+dotnet_analyzer_diagnostic.category-Usage.severity = error
+dotnet_analyzer_diagnostic.category-Design.severity = error
+
+# MAUI specific settings (if applicable)
+# Add any specific settings related to .NET MAUI here if needed
+
+# Additional settings for other languages (optional)
+[*.{xml,json,config}]
+indent_size = 2
+
+[*.{xaml}]
+indent_size = 2
+
+# Exclude specific directories
+[bin/**,obj/**]
+indent_size = 4
+
+# Additional code style rules
+# Disallow extra blank lines
+dotnet_diagnostic.SA1507.severity = error
+# Disable IDE0003 rule
+dotnet_diagnostic.IDE0003.severity = none
+
+
+# Disable IDE0003 rule
+dotnet_diagnostic.IDE0003.severity = none
+

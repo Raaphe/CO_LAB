@@ -1,24 +1,30 @@
-﻿using System.ComponentModel.DataAnnotations;
+// PAT Project - Sharp Coders
 
-namespace PAT.Models.Entities;
+using System.ComponentModel.DataAnnotations;
 
-public class Meeting : BaseEntity
+namespace PAT.Models.Entities
 {
-	[Required]
-	public virtual Tutor? Tutor { get; set; }
+    public class Meeting : BaseEntity
+    {
+        [Required]
+        public virtual Tutor? Tutor { get; set; }
 
-	[Required]
-	public virtual Tutee? Tutee { get; set; }
+        [Required]
+        public virtual Tutee? Tutee { get; set; }
 
-	[Required]
-	public DayOfWeek DayOfWeek { get; set; }
+        [Required]
+        public virtual Course? Course { get; set; }
 
-	[Required]
-	public TimeSpan StartTime { get; set; }
+        [Required]
+        public DayOfWeek DayOfWeek { get; set; }
 
-	[Required]
-	public TimeSpan EndTime { get; set; }
+        [Required]
+        public TimeSpan StartTime { get; set; }
 
-	[Required]
-	public Boolean IsDeleted { get; set; } = false;
+        [Required]
+        public TimeSpan EndTime { get; set; }
+
+        [Required]
+        public bool IsDeleted { get; set; }
+    }
 }

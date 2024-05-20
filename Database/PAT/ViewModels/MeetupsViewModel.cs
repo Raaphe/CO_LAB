@@ -1,44 +1,73 @@
-﻿namespace PAT.ViewModels;
+﻿// PAT Project - Sharp Coders
 
+using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.EntityFrameworkCore;
+using PAT.Data;
+using PAT.Models.Entities;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Data;
-using Microsoft.EntityFrameworkCore;
-using Models.Entities;
 
-public class MeetupsViewModel : BindableObject
+namespace PAT.ViewModels
 {
-	public ObservableCollection<Meeting> Meetings { get; set; }
+    public partial class MeetupsViewModel : ObservableObject
+    {
+        [ObservableProperty]
+        private ObservableCollection<Meeting>? meetings;
 
-	public ICommand DeleteMeetingCommand { get; }
-	private readonly AppDbContext _context;
+        public ICommand DeleteMeetingCommand { get; }
+        private readonly AppDbContext context;
 
-	public MeetupsViewModel(AppDbContext context)
-	{
-		Meetings = new ObservableCollection<Meeting>();
+        public MeetupsViewModel(AppDbContext context)
+        {
+            DeleteMeetingCommand = new Command<Meeting>(Execute);
+            this.context = context;
+        }
 
-		DeleteMeetingCommand = new Command<Meeting>(Execute);
-		_context = context;
-	}
+        public void LoadMeetings()
+        {
+            if (App.ShellViewModel?.Student == null)
+            {
+                return;
+            }
 
-	public MeetupsViewModel()
-	{
-		throw new NotImplementedException();
-	}
+            if (App.ShellViewModel.Student is Tutor tutor)
+            {
+                Meetings = new ObservableCollection<Meeting>(
+                    context.Meetings.Where(m => m.Tutor != null && !m.IsDeleted && m.Tutor.Id == tutor.Id)
+                );
+                return;
+            }
 
-	private async void Execute(Meeting meeting)
-	{
-		var fullMeetingEntity = await _context.Meetings.SingleOrDefaultAsync(m => m.Id == meeting.Id);
+            if (App.ShellViewModel.Student is Tutee tutee)
+            {
+                Meetings = new ObservableCollection<Meeting>(
+                    context.Meetings.Where(m => m.Tutee != null && m.Tutor != null && !m.IsDeleted && m.Tutee.Id == tutee.Id)
+                );
+            }
+        }
 
-		if (fullMeetingEntity != null)
-		{
-			fullMeetingEntity.IsDeleted = true;
-			_context.Meetings.Update(fullMeetingEntity);
-			return;
-		}
-	}
+        private async void Execute(Meeting meeting)
+        {
+            Meeting? fullMeetingEntity = await context.Meetings.SingleOrDefaultAsync(m => m.Id == meeting.Id);
 
+            if (fullMeetingEntity == null)
+            {
+                return;
+            }
 
+            fullMeetingEntity.IsDeleted = true;
+            _ = context.Meetings.Update(fullMeetingEntity);
+        }
 
+        internal async void DeleteMeetingAsync(Meeting meeting)
+        {
+            if (meeting == null)
+            {
+                return;
+            }
 
+            context.Meetings.Remove(meeting);
+            await context.SaveChangesAsync();
+        }
+    }
 }

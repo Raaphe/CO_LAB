@@ -4,10 +4,10 @@
 		<OutputType>Exe</OutputType>
 
 		<!-- Display name -->
-		<ApplicationTitle>Task List</ApplicationTitle>
+		<ApplicationTitle>PAT</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>jfs-dev.task-list-app-maui</ApplicationId>
+		<ApplicationId>org.PAT</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -16,7 +16,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#006400" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#FFFFFF" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#006400" BaseSize="128,128" />
@@ -33,6 +33,14 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.4" />
 		<PackageReference Include="Microsoft.Maui.Core" Version="8.0.21" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EditorConfigFiles Remove="C:\Users\Raph\RiderProjects\CO_LAB\Database\PAT\.editorconfig" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="C:\Users\Raph\RiderProjects\CO_LAB\Database\PAT\.editorconfig" />
 	</ItemGroup>
 
 </Project>

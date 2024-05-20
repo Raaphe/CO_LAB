@@ -1,153 +1,126 @@
-﻿namespace PAT.ViewModels;
+﻿// PAT Project - Sharp Coders
 
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Data;
 using Microsoft.EntityFrameworkCore;
-using Models.Entities;
+using PAT.Data;
+using PAT.Models.Entities;
+using System.Collections.ObjectModel;
 
-public sealed partial class FindTutorViewModel: ObservableObject, IDisposable, IAsyncDisposable
+namespace PAT.ViewModels
 {
+    public sealed partial class FindTutorViewModel : ObservableObject
+    {
+        private readonly AppDbContext _dbContext;
 
+        [ObservableProperty]
+        private ObservableCollection<Course>? _courses;
 
-	private readonly AppDbContext _dbContext;
-	public new event PropertyChangedEventHandler? PropertyChanged;
-	private ObservableCollection<Course>? _courses;
-	private ObservableCollection<Meeting>? Meetings;
-	private Course? _selectedCourse;
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Meetings))]
+        private Course? _selectedCourse;
 
-	public ObservableCollection<Course>? Courses
-	{
-		get => _courses;
-		set
-		{
-			_courses = value;
-			OnPropertyChanged();
-		}
-	}
-
-	public Course? SelectedCourse
-	{
-		get => _selectedCourse;
-		set
-		{
-			_selectedCourse = value;
-			OnPropertyChanged();
-			LoadMeetings();
-		}
-	}
-
-	private void LoadMeetings()
-	{
-		// Clear existing meetings
-		Meetings?.Clear();
-
-		var tutors = _dbContext
-		             .Tutors.Where(tutor => App.ShellViewModel != null &&
-		                                    _selectedCourse != null &&
-		                                    tutor.Program == _selectedCourse.Program)
-		             .Include(student => student.Availabilities!)
-		             .AsEnumerable()
-		             .Where(tutor => AvailabilityStudentMatches(App.ShellViewModel!.Student, tutor));
+        public ICollection<Meeting> Meetings => LoadMeetings();
 
 
 
-		foreach (var t in tutors)
-		{
-			foreach (var a in t.Availabilities!)
-			{
-				foreach (var studentAvailability in App.ShellViewModel?.Student?.Availabilities!)
-				{
-					if (!AvailabilitiesCoincide(studentAvailability, a))
-					{
-						continue;
-					}
 
-					var meetingStart = a.StartTime > studentAvailability.StartTime ? a.StartTime : studentAvailability.StartTime;
-					var meetingEnd = a.EndTime < studentAvailability.EndTime ? a.EndTime : studentAvailability.EndTime;
+        public FindTutorViewModel(AppDbContext context)
+        {
+            _dbContext = context;
+            Courses = [];
+        }
 
-					var existingMeeting =  Meetings!.FirstOrDefault(m =>
-						                                               m.DayOfWeek == a.DayOfWeek &&
-						                                               m.StartTime == meetingStart &&
-						                                               m.EndTime == meetingEnd &&
-						                                               m.Tutee == App.ShellViewModel.Student &&
-						                                               m.Tutor == t &&
-						                                               !m.IsDeleted);
+        private ICollection<Meeting> LoadMeetings()
+        {
+            // Clear existing meetings
+            var resultList = new Collection<Meeting>();
 
-					if (existingMeeting != null)
-					{
-						continue;
-					}
+            IEnumerable<Tutor> tutors = _dbContext
+                         .Tutors.Where(tutor => App.ShellViewModel != null &&
+                                                SelectedCourse != null &&
+                                                tutor.Program == SelectedCourse.Program)
+                         .Include(student => student.Availabilities!)
+                         .AsEnumerable()
+                         .Where(tutor => AvailabilityStudentMatches(App.ShellViewModel!.Student, tutor));
 
-					var meeting = new Meeting
-					{
-						StartTime = meetingStart,
-						EndTime = meetingEnd,
-						DayOfWeek = a.DayOfWeek,
-						Tutee = App.ShellViewModel.Student as Tutee,
-						Tutor = t,
-						IsDeleted = false
-					};
 
-					Meetings!.Add(meeting);
-				}
-			}
-		}
-	}
 
-	public FindTutorViewModel(AppDbContext context)
-	{
-		_dbContext = context;
-		Courses = new ObservableCollection<Course>();
-		Meetings = new ObservableCollection<Meeting>();
-	}
+            foreach (Tutor t in tutors)
+            {
+                foreach (Availability a in t.Availabilities!)
+                {
+                    foreach (Availability studentAvailability in App.ShellViewModel?.Student?.Availabilities!)
+                    {
+                        if (!AvailabilitiesCoincide(studentAvailability, a))
+                        {
+                            continue;
+                        }
 
-	public async Task LoadStudentsCoursesAsync()
-	{
-		if (App.ShellViewModel?.Student == null || App.ShellViewModel.Student.Program == null)
-		{
-			return;
-		}
+                        TimeSpan meetingStart = a.StartTime > studentAvailability.StartTime ? a.StartTime : studentAvailability.StartTime;
+                        TimeSpan meetingEnd = a.EndTime < studentAvailability.EndTime ? a.EndTime : studentAvailability.EndTime;
 
-		var programName = App.ShellViewModel.Student.Program.ProgramName;
+                        Meeting? existingMeeting = _dbContext.Meetings!.FirstOrDefault(m =>
+                                                                           m.DayOfWeek == a.DayOfWeek &&
+                                                                           m.StartTime == meetingStart &&
+                                                                           m.EndTime == meetingEnd &&
+                                                                           m.Tutee == App.ShellViewModel.Student &&
+                                                                           m.Tutor == t &&
+                                                                           !m.IsDeleted);
 
-		var courseBuffer = await _dbContext.Courses
-		                                   .Where(c => c.Program.ProgramName == programName)
-		                                   .ToListAsync();
+                        if (existingMeeting != null)
+                        {
+                            continue;
+                        }
 
-		Courses?.Clear();
-		foreach (var course in courseBuffer)
-		{
-			Courses?.Add(course);
-		}
-	}
+                        var meeting = new Meeting
+                        {
+                            StartTime = meetingStart,
+                            EndTime = meetingEnd,
+                            DayOfWeek = a.DayOfWeek,
+                            Tutee = App.ShellViewModel.Student as Tutee,
+                            Tutor = t,
+                            Course = SelectedCourse,
+                            IsDeleted = false
+                        };
 
-	public void Dispose()
-	{
-		_dbContext.Dispose();
-	}
+                        resultList!.Add(meeting);
+                    }
+                }
+            }
 
-	public async ValueTask DisposeAsync()
-	{
-		await _dbContext.DisposeAsync();
-	}
+            return resultList;
+        }
 
-	private new void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-	{
-		PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-	}
+        public async Task LoadStudentsCoursesAsync()
+        {
+            if (App.ShellViewModel?.Student == null || App.ShellViewModel.Student.Program == null)
+            {
+                return;
+            }
 
-	private bool AvailabilityStudentMatches(Student? tutee, Student tutor)
-	{
-		return (from tuteeAvailability in tutee?.Availabilities! from tutorAvailability in tutor.Availabilities! where AvailabilitiesCoincide(tuteeAvailability, tutorAvailability) select tuteeAvailability).Any();
-	}
+            var programName = App.ShellViewModel.Student.Program.ProgramName;
 
-	private bool AvailabilitiesCoincide(Availability a1, Availability a2)
-	{
-		return a1.DayOfWeek == a2.DayOfWeek &&
-		       !(a1.EndTime <= a2.StartTime || a1.StartTime >= a2.EndTime);
-	}
+            List<Course> courseBuffer = await _dbContext.Courses
+                                               .Where(c => c.Program.ProgramName == programName)
+                                               .ToListAsync();
 
+            Courses?.Clear();
+            foreach (Course course in courseBuffer)
+            {
+                Courses?.Add(course);
+            }
+        }
+
+        private bool AvailabilityStudentMatches(Student? tutee, Student tutor) => (from tuteeAvailability in tutee?.Availabilities! from tutorAvailability in tutor.Availabilities! where AvailabilitiesCoincide(tuteeAvailability, tutorAvailability) select tuteeAvailability).Any();
+
+        private bool AvailabilitiesCoincide(Availability a1, Availability a2) => a1.DayOfWeek == a2.DayOfWeek &&
+                   !(a1.EndTime <= a2.StartTime || a1.StartTime >= a2.EndTime);
+
+        public async void ProcessMeeting(Meeting meeting)
+        {
+            _dbContext.Meetings.Add(meeting);
+            await _dbContext.SaveChangesAsync();
+            LoadMeetings();
+        }
+    }
 }

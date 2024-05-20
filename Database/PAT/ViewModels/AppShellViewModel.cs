@@ -1,44 +1,52 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿// PAT Project - Sharp Coders
 
 namespace PAT.ViewModels
 {
-	using Models.Entities;
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using Models.Entities;
 
-	public class AppShellViewModel : INotifyPropertyChanged
-	{
-		private bool _isLoggedIn;
-		private Student? _student;
+    public partial class AppShellViewModel : ObservableObject
+    {
 
-		public event PropertyChangedEventHandler? PropertyChanged;
+        [ObservableProperty]
+        private bool _isTutor;
+        private bool _isLoggedIn;
+        private Student? _student;
 
-		public bool IsLoggedIn
-		{
-			get => _isLoggedIn;
-			set
-			{
-				if (_isLoggedIn == value)
-					return;
-				_isLoggedIn = value;
-				OnPropertyChanged();
-			}
-		}
 
-		public Student? Student
-		{
-			get => _student;
-			set
-			{
-				if (_student == value)
-					return;
-				_student = value;
-				OnPropertyChanged();
-			}
-		}
 
-		protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
+        public bool IsLoggedIn
+        {
+            get => _isLoggedIn;
+            set
+            {
+                if (_isLoggedIn == value)
+                    return;
+                _isLoggedIn = value;
+                OnPropertyChanged();
+            }
+        }
+        public Student? Student
+        {
+            get => _student;
+            set
+            {
+                if (_student != null)
+                {
+                    if (_student is Tutee tutee)
+                    {
+                        IsTutor = false;
+                    }
+                    else
+                    {
+                        IsTutor = true;
+                    }
+                }
+                if (_student == value)
+                    return;
+                _student = value;
+                OnPropertyChanged();
+            }
+        }
+    }
 }

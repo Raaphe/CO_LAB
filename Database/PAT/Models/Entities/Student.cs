@@ -1,20 +1,22 @@
-﻿namespace PAT.Models.Entities;
+﻿// PAT Project - Sharp Coders
+
+namespace PAT.Models.Entities;
 using System.ComponentModel.DataAnnotations;
 
-public class Student: User
+public class Student : User
 {
-	[Required]
-	[MaxLength(15)]
-	public String Matricule { get; set; } = String.Empty;
+    [Required]
+    [MaxLength(15)]
+    public String Matricule { get; set; } = String.Empty;
 
-	[Required]
-	public Program? Program { get; set; } = new Program();
+    [Required]
+    public Program? Program { get; set; } = new Program();
 
-	[Required]
-	public int Semester { get; set; } = 1;
+    [Required]
+    public int Semester { get; set; } = 1;
 
-	[Required]
-	public virtual List<Availability>? Availabilities { get; set; }
+    [Required]
+    public virtual List<Availability>? Availabilities { get; set; }
 
-	public virtual ICollection<Meeting> Meetings { get; set; } = new List<Meeting>();
+    public virtual ICollection<Meeting> Meetings { get; set; } = new List<Meeting>();
 }

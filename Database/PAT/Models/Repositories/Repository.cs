@@ -1,4 +1,6 @@
-﻿namespace PAT.Models.Repositories;
+﻿// PAT Project - Sharp Coders
+
+namespace PAT.Models.Repositories;
 using Data;
 using Entities;
 using Microsoft.EntityFrameworkCore;

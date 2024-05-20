@@ -1,64 +1,92 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:PAT.ViewModels"
+             xmlns:entities="using:PAT.Models.Entities"
              x:Class="PAT.Views.MeetupsPage">
-	<ContentPage.Resources>
-		<Style TargetType="Frame">
-			<Setter Property="CornerRadius" Value="10" />
-			<Setter Property="Padding" Value="20" />
-			<Setter Property="Margin" Value="50" />
-		</Style>
 
-	</ContentPage.Resources>
+    <ContentPage.Resources>
+        <Style TargetType="Frame">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="20" />
+            <Setter Property="Margin" Value="20" />
+        </Style>
+        <Style TargetType="Label" x:Key="HeaderLabelStyle">
+            <Setter Property="FontSize" Value="Large" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="TextColor" Value="#044c7a" />
+        </Style>
+    </ContentPage.Resources>
 
     <ContentPage.Content>
-	    <ScrollView>
-		    <Grid ColumnDefinitions="*,*">
-			    <Frame Grid.Column="0">
-			    <StackLayout>
-            <!-- Header -->
-            <Label Text="Vos Rencontres" FontSize="Large" HorizontalOptions="Center" TextColor="#044c7a"></Label>
-            <BoxView
-	            HeightRequest="2"
-	            BackgroundColor="#044C7A"
-	            HorizontalOptions="FillAndExpand"
-	            Margin="2"
-            ></BoxView>
-            <StackLayout Orientation="Horizontal" Padding="16" BackgroundColor="#044c7a" HorizontalOptions="Center">
-                <Label Text="Tuteur " FontAttributes="Bold"  Margin="5" />
-                <Label Text="Tutoré " FontAttributes="Bold"  Margin="5"/>
-                <Label Text="Jour de la semaine " FontAttributes="Bold"  Margin="5"/>
-                <Label Text="Début " FontAttributes="Bold"  Margin="5"/>
-                <Label Text="Fin " FontAttributes="Bold"  Margin="5"/>
-                <!-- Add more labels for additional columns if needed -->
-                <Label Text="" WidthRequest="80" /> <!-- Empty space for buttons -->
-                <Label Text="" WidthRequest="80" /> <!-- Empty space for buttons -->
-            </StackLayout>
+        <ScrollView>
+            <Grid ColumnDefinitions="*,*">
 
-            <!-- CollectionView -->
-            <CollectionView ItemsSource="{Binding Meetings}">
-	                <CollectionView.ItemTemplate>
-	                    <DataTemplate>
-	                        <StackLayout Orientation="Horizontal" Padding="10">
-	                            <Label Text="{Binding Tutor.Name}" />
-	                            <Label Text="{Binding Tutee.Name}" />
-	                            <Label Text="{Binding DayOfWeek}" />
-	                            <Label Text="{Binding StartTime}" />
-	                            <Label Text="{Binding EndTime}" />
-	                            <Button Text="Edit" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MeetupsViewModel}}, Path=NavigateToChat}" CommandParameter="{Binding .}" />
-	                            <Button Text="Delete" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MeetupsViewModel}}, Path=DeleteMeetingCommand}" CommandParameter="{Binding .}" />
-	                        </StackLayout>
-	                    </DataTemplate>
-	                </CollectionView.ItemTemplate>
-	            </CollectionView>
-				</StackLayout>
-			    </Frame>
-			    <Frame Grid.Column="1">
-				    <Image  Source="meetup.png" HeightRequest="500" ></Image>
-			    </Frame>
-			    </Grid>
-	    </ScrollView>
+                <Frame Grid.Column="0">
+                    <StackLayout>
+
+                        <Label Text="Your Meetings" Style="{StaticResource HeaderLabelStyle}" />
+                        <BoxView HeightRequest="2" BackgroundColor="#044C7A" HorizontalOptions="FillAndExpand" Margin="2" />
+
+                        <ListView ItemsSource="{Binding Meetings}"
+                                  VerticalOptions="FillAndExpand"
+                                  SeparatorVisibility="None"
+                                  Margin="0,0,10,0">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="entities:Meeting">
+                                    <ViewCell Height="60">
+                                        <Grid Padding="10" BackgroundColor="#F0F0F0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout Grid.Column="0"
+                                                 Orientation="Horizontal"
+                                                 Spacing="10"
+                                                 VerticalOptions="Center"
+                                                 Margin="0,0,10,0">
+                                                <Label Text="{Binding Tutor.FirstName}" FontSize="18" VerticalOptions="Center" TextColor="Black" />
+                                                <Label Text="{Binding StartTime, StringFormat='{0:hh:mm}'}" FontSize="16" VerticalOptions="Center" TextColor="Black" />
+                                                <Label Text="-" FontSize="16" VerticalOptions="Center" TextColor="Black" />
+                                                <Label Text="{Binding EndTime, StringFormat='{0:hh:mm}'}" FontSize="16" VerticalOptions="Center" TextColor="Black" />
+                                                <Label Text="{Binding Course.CourseName}" FontSize="16" VerticalOptions="Center" TextColor="Black" />
+                                            </StackLayout>
+                                            <Button Grid.Column="1"
+                                                Text="Chat"
+                                                BackgroundColor="#007BFF"
+                                                Clicked="NavigateToChats"
+                                                TextColor="White"
+                                                CornerRadius="8"
+                                                WidthRequest="100"
+                                                HeightRequest="40"
+                                                FontSize="14"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="End" 
+                                                Margin="0,0,10,0"/>
+                                            <Button 
+                                                Grid.Column="2" 
+                                                Text="Cancel"
+                                                Clicked="RemoveMeetups"
+                                                BackgroundColor="Red"
+                                                TextColor="White"
+                                                CornerRadius="8"
+                                                WidthRequest="100"
+                                                HeightRequest="40"
+                                                FontSize="14"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="End" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </Frame>
+
+                <Frame Grid.Column="1">
+                    <Image Source="meetup.png" HeightRequest="500" />
+                </Frame>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
-
 </ContentPage>

@@ -1,7 +1,7 @@
-﻿namespace PAT.Models.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿// PAT Project - Sharp Coders
 
-public class Tutor: Student
+namespace PAT.Models.Entities;
+public class Tutor : Student
 {
-	public bool IsValidated { get; set; }
+    public bool IsValidated { get; set; }
 }

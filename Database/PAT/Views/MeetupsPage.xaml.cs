@@ -1,27 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// PAT Project - Sharp Coders
+//
+// This file is part of the PAT project. For more information, visit https://github.com/Raaphe/CO_LAB
 
-namespace PAT.Views;
+using PAT.Data;
+using PAT.Models.Entities;
+using PAT.ViewModels;
 
-using ViewModels;
-
-public partial class MeetupsPage : ContentPage
+namespace PAT.Views
 {
-	private readonly MeetupsViewModel _meetupsViewModel;
+    public partial class MeetupsPage : ContentPage
+    {
+        private readonly MeetupsViewModel _meetupsViewModel;
 
-	public MeetupsPage(MeetupsViewModel viewModel)
-	{
-		InitializeComponent();
-		_meetupsViewModel = viewModel;
-		BindingContext = viewModel;
-	}
+        public MeetupsPage(AppDbContext appDbContext)
+        {
+            InitializeComponent();
+            BindingContext = _meetupsViewModel = new MeetupsViewModel(appDbContext);
+        }
 
-	public void NavigateToChat()
-	{
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _meetupsViewModel.LoadMeetings();
+        }
 
-	}
+        private void NavigateToChats(object sender, EventArgs e)
+        {
+            Console.WriteLine("");
+            Shell.Current.GoToAsync("//chat");
+        }
 
+
+        private void RemoveMeetups(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+
+            if (button?.BindingContext is Meeting meeting)
+            {
+                _meetupsViewModel.DeleteMeetingAsync(meeting);
+                _meetupsViewModel.LoadMeetings();
+            }
+        }
+    }
 }

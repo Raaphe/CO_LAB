@@ -1,6 +1,8 @@
-﻿namespace PAT.Models.Entities;
+﻿// PAT Project - Sharp Coders
 
-public class Teacher: User
+namespace PAT.Models.Entities;
+
+public class Teacher : User
 {
-	public bool IsValidated { get; set; }
+    public bool IsValidated { get; set; }
 }
